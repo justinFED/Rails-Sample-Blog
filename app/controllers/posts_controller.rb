@@ -54,13 +54,13 @@ class PostsController < ApplicationController
   def destroy
     if @post.destroy
       respond_to do |format|
-        format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
+        format.html { redirect_to posts_url, notice: "Post was successfully deleted." }
         format.json { head :no_content }
       end
     else
       respond_to do |format|
-        format.html { redirect_to posts_url, alert: "Failed to destroy post." }
-        format.json { render json: { error: "Failed to destroy post" }, status: :unprocessable_entity }
+        format.html { redirect_to posts_url, alert: "Failed to delete post." }
+        format.json { render json: { error: "Failed to delete post" }, status: :unprocessable_entity }
       end
     end
   end

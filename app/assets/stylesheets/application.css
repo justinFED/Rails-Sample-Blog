@@ -117,7 +117,7 @@ body {
     align-items: center;
   }
 
- 
+  
 
   .edit-post-link,
   .back-to-posts-link,
@@ -137,4 +137,14 @@ body {
   .destroy-post-button:hover {
     background-color: #f4f4f4;
   }
+
+  .back-to-posts {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold; 
+  }
   
+  .back-to-posts:hover {
+    text-decoration: underline; 
+  }
+
