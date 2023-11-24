@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Daily Blog</h1>
+<h1 class="daily-blog">Daily Blog</h1>
 
 <div id="posts">
   <% @posts.each do |post| %>
@@ -11,4 +11,4 @@
   <% end %>
 </div>
 
-<%= link_to "New post", new_post_path %>
+<%= link_to "New post", new_post_path, class: "new-post-button" %>
