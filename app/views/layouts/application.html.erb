@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>SampleBlog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+<title>SampleBlog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<%= csrf_meta_tags %>
+<%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application" %>
-    <%= javascript_importmap_tags %>
-  </head>
+<%= stylesheet_link_tag "application", "user", "data-turbo-track": "reload" %>
+<%= javascript_importmap_tags %>
+</head>
 
   <body>
+  <nav class="navbar">
+  <ul>
+    <li><%= link_to 'Posts', posts_path %></li>
+    <li><%= link_to 'New User', new_user_path %></li>
+    <li><%= link_to 'List of Users', users_path %></li>
+    
+  </ul>
+</nav>
+
     <div class="center-box">
       <% if notice %>
-        <p class="notice"></p>
+        <p class="notice"><%= notice %></p>
       <% end %>
 
       <% if alert %>
-        <p class="alert"></p>
+        <p class="alert"><%= alert %></p>
       <% end %>
 
       <%= yield %>

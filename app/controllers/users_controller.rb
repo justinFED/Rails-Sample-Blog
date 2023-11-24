@@ -1,50 +1,47 @@
 class UsersController < ApplicationController
-def index
+  def index
     @users = User.all
-end
+  end
 
-def new
+  def new
     @user = User.new
-end
+  end
 
-def create
-        @user = User.new(user_params)
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to root_path, notice: 'User was successfully created.'
+    else
+      render :new
+    end
+  end
 
-        if @user.save
-                redirect_to user_path
-        else
-            render: new
-        end
+  def edit
+    @user = User.find(params[:id])
+  end
 
-end
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to root_path, notice: 'User was successfully updated.'
+    else
+      render :edit
+    end
+  end
 
-def edit
-    <% form_with scope: :user, url: create_user_path, local: true do |f| %>
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+  
+    respond_to do |format|
+      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
+  
+  private
 
-        <p>
-        <% if @user.errors.any? %>
-         <% @user.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-            <% end %>
-            <% end %>
-            </p>
-
-
-        <p>
-            <%= f.label :username %><br/>
-            <%= f.text_field :username %><br/>
-        </p>
-        <p>
-        <%= f.label :email %><br/>
-        <%= f.text_field :email %><br/>
-        </p>
-        <p>
-        <%= f.submit %>
-        </p>
-        <% end %>
-
-
-
-end
-
+  def user_params
+    params.require(:user).permit(:username, :email, :password, :password_confirmation)
+  end
 end
